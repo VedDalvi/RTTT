@@ -582,7 +582,7 @@ p {
   .sub-main{
     display: flex;
     justify-content: center;
-    height: 450px;
+    height: 500px;
     width: 30%;
     padding-top: 24px;
     border-radius: 70px;
@@ -595,59 +595,41 @@ p {
     display: flex;
   }
   .container-image{
-    border-radius: 150px;
-    align-items: center;
-    display: flex;
-    height: 110px;
-    width: 65px;
+        border-radius: 150px;
+        align-items: center;
+        display: flex;
+        height: 110px;
+        width: 65px;
   }
-  input{
-    width: 250px;
-    height: 25px;
-    border-radius: 25px;
-    box-shadow: inset 0px 0px 20px 0px #918d8d;
-    border: none;
-    outline: none;
-    background-color: #fff;
-  }
-  .email{
-    height: 25px;
-    width: 25px;
-    position: absolute;
-    left: 5px;
-    top: 10;
-    padding: 10px 0 0 10px;
-   
-  }
-  .Name{
-    font-weight:bold ;
-    padding-left: 20px;
-    font-size: 15px;
-   
-  }
-  .second-input{
-    padding-top: 20px;
-  
+  .input-signup{
+        width: 262px;
+        height: 42px;
+        padding: 1rem;
+        border-radius: 15px;
+        border: black;
+        background-color: #fff;
+        font-family: "Fredoka";
   }
   .button2{
-    width: 150px;
-    height: 40px;
-    border-radius: 30px;
-    background-color: rgb(2, 160, 199);
-    color: #fff;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+    font: "Fredoka";
     font-size: 22px;
     border: none;
-    transition: all 0.2s ease;
+    transition: 400ms;
   }
-  
-  button:active{
-    transform:scale(0.96)
+  .button2:hover{
+    background-color:#495057;
   }
   .Login-button{
-    padding-top: 25px;
     position: absolute;
-    left: 120px;
-    bottom: 90px;
+    margin: auto;
+    left:8%;
+    width: 33%;
+    top:343px;
   }
   .link1{
     font-size: 13px;
@@ -658,12 +640,16 @@ p {
   }
   .textt{
     position: absolute;
-    top: 166px;
+    top: 140px;
     
   }
   .title{
     position: absolute;
-    top: 59px;
+    border: solid black;
+    border-radius: 20px;
+    padding: 1rem;
+    width: 60%;
+    background-color: #20cc98;
   }
 /*End of Login*/
 
@@ -829,5 +815,3 @@ p {
         word-spacing: 22px;
     }
 }
-
-
