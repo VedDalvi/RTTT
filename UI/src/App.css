@@ -627,7 +627,6 @@ p {
   .Login-button{
     position: absolute;
     margin: auto;
-    left:8%;
     width: 33%;
     top:343px;
   }
