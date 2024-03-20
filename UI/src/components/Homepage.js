@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom';
 export default function Homepage(props) {
   return (
     <div>
-      <Navbar />
+      <div style={{position:"fixed",zIndex:"1",width:"100%"}}>
+        <Navbar />
+      </div>
       <div className="container">
         <div className="layout1">
             <div className="layout1b">
