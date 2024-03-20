@@ -11,6 +11,7 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     height: 550px;
+    font-family: "Fredoka";
 }
 .bton {
     border: none;
@@ -571,7 +572,7 @@ p {
 }
 /*End of Video Translate Style*/
 
-/*Login*/
+/*Login/Signup*/
 .main{
     text-align: center;
     justify-content: center;
@@ -582,17 +583,12 @@ p {
   .sub-main{
     display: flex;
     justify-content: center;
-    height: 500px;
+    height: 417px;
     width: 30%;
     padding-top: 24px;
     border-radius: 70px;
     background-color: rgb(3, 131, 216) ;
     position: relative;
-  }
-  .imags{
-    padding-top:40px;
-    justify-content: center;
-    display: flex;
   }
   .container-image{
         border-radius: 150px;
@@ -609,16 +605,19 @@ p {
         border: black;
         background-color: #fff;
         font-family: "Fredoka";
+        margin-bottom: 1.5rem;
   }
-  .button2{
+  .button2 {
     width: 100%;
+    position: relative;
     height: 50px;
     border-radius: 15px;
     background-color: black;
     color: white;
-    font: "Fredoka";
+    font-family: "Fredoka";
     font-size: 22px;
     border: none;
+    left: 60%;
     transition: 400ms;
   }
   .button2:hover{
@@ -627,17 +626,33 @@ p {
   .Login-button{
     position: absolute;
     margin: auto;
-    width: 33%;
-    top:343px;
+    width: 44%;
+    top:200px;
+
   }
   .link1{
-    font-size: 13px;
-    font-weight:400 ;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: "Fredoka";
     position: absolute;
-    top: 410px;
-    left: 50px;
+    top: 462px;
+    margin: auto;
   }
-  .textt{
+  .link1 a{
+    padding: 0.5rem;
+    border: #1A1A1A;
+    background-color: #12CDD4;
+    color: white;
+    text-shadow: black;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 200ms;
+  }
+  .link1 a:hover{
+    color: #000000;
+    background-color:#0CA789;
+  }
+  .contnt{
     position: absolute;
     top: 140px;
     
@@ -650,7 +665,7 @@ p {
     width: 60%;
     background-color: #20cc98;
   }
-/*End of Login*/
+/*End of Login/Signup*/
 
 @media screen and (max-width: 680px) {
     /*Media Queries for Navbar*/
@@ -774,12 +789,12 @@ p {
         height: 214px;
     }
     .layout1a {
-        font-size: 20px;
+        font-size: 19px;
         left: -11px;
     }
     .layout1a .logo {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         left: -3px;
     }
     .separator1 {
@@ -804,7 +819,7 @@ p {
     }
     .button1 font {
         left: -3px;
-        top: -10px;
+        top:-10px;
     }
     .layout1c {
         width: 100%;

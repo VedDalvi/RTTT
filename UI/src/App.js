@@ -5,6 +5,7 @@ import Homepage from './components/Homepage';
 import Translate from './components/Translate';
 import About from './components/About'
 import Signup from './components/Signup';
+import Login from './components/Login'
 
 export default function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ export default function App() {
     {
       path:'/signup',
       element:<Signup/>
+    },
+    {
+      path:'/login',
+      element:<Login/>
     }
   ])
   return (
