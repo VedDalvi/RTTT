@@ -3,10 +3,33 @@ import { Link } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
 export default function Login() {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [pw, setPassword] = useState("");
+    const validateUrPw = () =>{
+      if (!email) {
+        alert("Please enter a valid email address");
+        return false;
+      }
+      const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+      if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address");
+          return false;
+      }
+      if (!pw) {
+        alert("Please enter the password");
+        return false;
+      }
+      if (pw.length < 6) {
+          alert("Password must contain at least 6 characters");
+          return false;
+      }
+      return true;
+    }
 
     const handlelogin = (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      if (validateUrPw()) {
+        console.log("Valid form submitted");
+      }
     };
 
   return (
@@ -19,7 +42,7 @@ export default function Login() {
           <form onSubmit={handlelogin}>
               <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} className="input-signup"/>
               <br/>
-              <input type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} className="input-signup"/>
+              <input type="password" placeholder="Enter password" value={pw} onChange={(e) => setPassword(e.target.value)} className="input-signup"/>
               <div className="Login-button" style={{top:"140px",position:"absolute"}}>
                 <button type="submit" className="button2">Login</button>
               </div>

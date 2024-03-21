@@ -1,3 +1,4 @@
+
 .container {
     max-width: 2000px;
 }
@@ -55,7 +56,7 @@
     padding: 5px;
     margin: auto;
     border: solid;
-    top: 134px;
+    top: 100px;
     position: relative;
     text-align: center;
     border-radius: 44px;
@@ -290,22 +291,40 @@ body {
 .bton:hover {
     background-color: rgba(167, 167, 167, 0.26);
 }
+.sidebtn {
+    background-color:#20cc98;
+    position: fixed;
+    border-style: dashed;
+    border-radius:50px;
+    z-index: 1;
+    padding: 1rem;
+    top:110px;
+    left: -5px;
+    transition: 400ms;
+}
+.sidebtn:hover {
+    background-color:#ffffff;
+}
+.sidebtn img {
+    height: 40px;
+}
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-    padding-top: 60px;
     transition: 0.5s;
+    padding-top: 60px;
 }
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    margin-bottom: 2.5rem;
+    font-size: 30px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -319,6 +338,11 @@ body {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    border: none;
+    padding: 0px;
+    background: none;
+    color: #a5a0a0;
+    outline: none;
 }
 #main {
 transition: margin-left .5s;
@@ -675,7 +699,8 @@ p {
         margin-bottom: 10px;
         font-size: 10px;
     }
-
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
     /*Media Queries for Cards*/
     .crd {
         width: 158%;

@@ -43,7 +43,7 @@ export default function Navbar(props) {
 
   return (
     <div className="container-fluid">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light ">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="layout1a">
             <img src={def} className="logo" width="70" height="70" alt=""/>Real Time Text Translator<img className="separator1" src={sep} width="5" height="70" alt=""/>
             </div>
