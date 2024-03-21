@@ -704,6 +704,9 @@ p {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
     /*Media Queries for Cards*/
+    .cards{
+        width: unset;
+    }
     .crd {
         width: 158%;
         padding-top: 0px;
