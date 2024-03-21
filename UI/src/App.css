@@ -354,6 +354,8 @@ padding: 20px;
 .cards {
     position: static;
     display: flex;
+    width: 72%;
+    margin: auto;
 }
 .crd {
     list-style: none;

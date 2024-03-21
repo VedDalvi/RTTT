@@ -14,13 +14,15 @@ export default function Homepage(props) {
   const closeNav = () => {
     document.getElementById("mySidenav").style.width = "0";
   };
+  const topRef = useRef(null);
   const formatRef = useRef(null);
   const featuresRef = useRef(null);
   return (
-    <div>
-      <Navbar />
+    <div ref={topRef}>
+      <Navbar/>
       <div id="mySidenav" className="sidenav">
         <button className="closebtn" onClick={closeNav}>&times;</button>
+        <Link to="#" onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>Home</Link>
         <Link to="#" onClick={() => formatRef.current.scrollIntoView({ behavior: "smooth" })}>Formats Supported</Link>
         <Link to="#" onClick={() => featuresRef.current.scrollIntoView({ behavior: "smooth" })}>Features</Link>
         <Link to='/Translate'>Translate</Link>
