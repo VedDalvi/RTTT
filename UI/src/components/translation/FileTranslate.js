@@ -32,30 +32,66 @@ function FileTranslate() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setUploadedFile(null);
     handleFile(file);
   };
 
   const handleFile = (file) => {
     if (file) {
       if (allowedFileTypes.includes(file.type)) {
-        setUploadedFile(file); 
+        setUploadedFile(file);
         setErrorMessage('');
       } else {
-        setUploadedFile(null);
-        alert('Invalid file type. Please upload a PDF or DOCX file.');
+        setErrorMessage('Invalid file type. Please upload a PDF or DOCX file.');
       }
     }
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
+    
     event.preventDefault();
-    if (uploadedFile) {
-      console.log("File submitted");
-      alert("File submitted", uploadedFile);
+    const formData = new FormData();
+    formData.append('file', uploadedFile);
+    try{
+          const response = await fetch('http://localhost:3001/upload', {
+            method: 'POST',
+            body: formData,
+      })
+      const data = await response.json();
+
+      if (response.ok) {
+          alert('File uploaded successfully');
+          console.log(data);
+      } else {
+          alert('File upload failed');
+          console.error(data);
+      }
+    }
+    catch(err){
+      console.log(err)
     }
   };
-  
+
+  formData.append('file', uploadedFile);
+  try{
+        const response = await fetch('http://localhost:3001/upload', {
+          method: 'POST',
+          body: formData,
+    })
+    const data = await response.json();
+
+    if (response.ok) {
+        alert('File uploaded successfully');
+        console.log(data);
+    } else {
+        alert('File upload failed');
+        console.error(data);
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
+};
+
   return (
     <div>
       <div className={`container ${isDragging ? 'dragging' : ''}`}>
@@ -75,7 +111,7 @@ function FileTranslate() {
             )}
             {uploadedFile && !errorMessage && (
               <div>
-                <p>File Uploaded: {uploadedFile.name}</p>
+                <p>File submitted: {uploadedFile.name}</p>
               </div>
             )}
           </div> 
