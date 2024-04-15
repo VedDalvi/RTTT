@@ -63,7 +63,6 @@
     height: 200px;
     width: 60%;
 }
-
 .button1 {
     padding: 12px;
     display: block;
@@ -95,7 +94,6 @@
     float: left;
     margin: auto;
 }
-
 .layout1c{
     text-align: center;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='23' ry='23' stroke='black' stroke-width='8' stroke-dasharray='16' stroke-dashoffset='4' stroke-linecap='butt'/%3e%3c/svg%3e");
@@ -701,8 +699,24 @@ p {
         margin-bottom: 10px;
         font-size: 10px;
     }
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+        position: fixed;
+    }
+    .sidenav a {
+        font-size: 14px;
+        margin-bottom: 12px;
+        overflow-x: hidden;
+    }
+    .sidebtn {
+        position: fixed;
+        padding: 1px;
+        top: 70px;
+    }
+    .sidebtn img {
+        height: 24px;
+        width: 77%;
+    }
     /*Media Queries for Cards*/
     .cards{
         width: unset;
@@ -814,9 +828,9 @@ p {
     }
 
     /*Media Queries for Landing Page*/
-    /*Landing 1 Queries*/
+    /*Layout 1 Queries*/
     .layout1 {
-        height: 214px;
+        height: 284px;
     }
     .layout1a {
         font-size: 19px;
@@ -832,7 +846,7 @@ p {
     }
     .layout1b {
         font-size: 11px;
-        top: 4px;
+        top: 43px;
         height: 115px;
         width: 90%;
     }
@@ -840,7 +854,7 @@ p {
         font-size: 16px;
         text-align: center;
         width: 54%;
-        top: 25px;
+        top: 75px;
         height: 50px;
     }
     .button1 img {
@@ -855,7 +869,54 @@ p {
         width: 100%;
         font-size: 23px;
         padding: 4px;
-        top: 126px;
+        top: 196px;
         word-spacing: 22px;
+    }
+    /*End of Layout 1*/
+
+    /*Layout 2*/
+    .layout2 {
+        width: 100%;
+        margin: auto;
+        height: 430px;
+    }
+    .layout2a {
+        background-image:none;
+        margin: auto;
+        width: 79%;
+        height: 81px;
+        border: #545b62;
+        border-style: solid;
+        border-radius: 43px;
+    }
+    .layout2a font {
+        font-size: 29px;
+        font-family: 'Fredoka';
+        top: 16px;
+    }
+    .layout2a1 {
+        margin: auto;
+        width: 100%;
+        top: 150%;
+        font-size: 22px;
+        font-family: 'Fredoka';
+    }
+    .pad {
+        left: 0;
+        margin: auto;
+        width: 32%;
+    }
+    .formats {
+        position: absolute;
+        top: -110px;
+    }
+    .frm {
+        height: 148px;
+        font-family: 'Fredoka';
+        font-size: 13px;
+        font-weight: bolder;
+    }
+    .frm font {
+        top: -6px;
     }
 }
