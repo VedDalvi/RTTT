@@ -119,6 +119,6 @@ function FileTranslate() {
       </div>
     </div>
   )
-}
+
 
 export default FileTranslate;
