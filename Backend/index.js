@@ -18,12 +18,13 @@ const port = 3001
 app.post('/upload/pdf', upload.single('file'), function (req, res, next) {
   console.log(req.file.filename);
   res.send(req.file.filename)
-})
+});
 
 app.post('/upload/image', upload.single('image'), function (req, res, next) {
   console.log(req.file.filename);
   res.send(req.file.filename)
-})
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
