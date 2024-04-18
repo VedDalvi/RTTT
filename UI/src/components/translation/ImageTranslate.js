@@ -26,22 +26,35 @@ function ImageTranslation() {
     setIsDragging(false);
 
     const file = e.dataTransfer.files[0];
-    setSelectedImage(file);
-    submitForm(e);
+    validateAndSetImage(file);
   };
 
   const handleImageChange = (e) => {
     e.preventDefault();
 
     const file = e.target.files[0];
-    setSelectedImage(file);
-    //displayImage(file);
-    submitForm(e);
+    validateAndSetImage(file);
+  };
+
+  const validateAndSetImage = (file) => {
+    if (file) {
+      const validFormats = ['.jpg', '.jpeg', '.png'];
+      const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+      if (validFormats.includes(extension)) {
+        setSelectedImage(file);
+        console.log("File Submited",file.name);
+        submitForm();
+      } else {
+        console.log("Error");
+        alert('Invalid file format. Please upload only .jpg, .jpeg, or .png files.');
+      }
+    }
   };
 
   const submitForm = (event) => {
-    event.preventDefault();
-    // Your form submission logic
+    if (event) {
+      event.preventDefault();
+    }
   };
 
   /*const displayImage = (file) => {

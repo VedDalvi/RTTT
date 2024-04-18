@@ -3,9 +3,9 @@ import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';   //Importing React Router
 import Homepage from './components/Homepage';
 import Translate from './components/Translate';
-import About from './components/About'
+import About from './components/About';
 import Signup from './components/Signup';
-import Login from './components/Login'
+import Login from './components/Login';
 
 export default function App() {
 
