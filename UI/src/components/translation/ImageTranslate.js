@@ -51,9 +51,26 @@ function ImageTranslation() {
     }
   };
 
-  const submitForm = (event) => {
-    if (event) {
-      event.preventDefault();
+  const submitForm = async() => {
+    const formData = new FormData();
+    formData.append('image', selectedImage);
+    try{
+          const response = await fetch('http://localhost:3001/upload/image', {
+            method: 'POST',
+            body: formData,
+      })
+      const data = await response.json();
+
+      if (response.ok) {
+          alert('File uploaded successfully');
+          console.log(data);
+      } else {
+          alert('File upload failed');
+          console.error(data);
+      }
+    }
+    catch(err){
+      console.log(err)
     }
   };
 

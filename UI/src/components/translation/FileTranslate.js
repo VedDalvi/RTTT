@@ -48,8 +48,28 @@ function FileTranslate() {
     }
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', uploadedFile);
+    try{
+          const response = await fetch('http://localhost:3001/upload/pdf', {
+            method: 'POST',
+            body: formData,
+      })
+      const data = await response.json();
+
+      if (response.ok) {
+          alert('File uploaded successfully');
+          console.log(data);
+      } else {
+          alert('File upload failed');
+          console.error(data);
+      }
+    }
+    catch(err){
+      console.log(err)
+    }
     if (uploadedFile) {
       console.log("File submitted");
       alert("File submitted", uploadedFile);
