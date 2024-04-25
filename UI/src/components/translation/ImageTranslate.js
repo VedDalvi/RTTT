@@ -43,7 +43,7 @@ function ImageTranslation() {
       if (validFormats.includes(extension)) {
         setSelectedImage(file);
         console.log("File Submited",file.name);
-        submitForm();
+        submitForm(file);
       } else {
         console.log("Error");
         alert('Invalid file format. Please upload only .jpg, .jpeg, or .png files.');
@@ -51,9 +51,9 @@ function ImageTranslation() {
     }
   };
 
-  const submitForm = async() => {
+  const submitForm = async(file) => {
     const formData = new FormData();
-    formData.append('image', selectedImage);
+    formData.append('image', file);
     try{
           const response = await fetch('http://localhost:3001/upload/image', {
             method: 'POST',

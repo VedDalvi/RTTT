@@ -42,7 +42,7 @@ function VideoTranslation() {
       if (validFormats.includes(extension)) {
         setSelectedVideo(file);
         console.log("File Submited",file.name);
-        submitForm();
+        submitForm(file);
       } else {
         console.log("Error");
         alert('Invalid file format. Please upload only .mp4 files.');
