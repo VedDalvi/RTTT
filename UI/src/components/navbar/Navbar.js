@@ -4,11 +4,10 @@ import usr from './user.png'
 import abt from './abt.png'
 import home from './home.png'
 import sep from './separator.png'
-import { Link, useLocation, useNavigate} from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 
-export default function Navbar({isLoggedIn},{setLoggedIn}) {
+export default function Navbar({isLoggedIn}) {
     const location = useLocation();
-    const navigate=useNavigate();
     // Function to render the home button
     const renderHomeButton = () => {
         return (
@@ -18,13 +17,6 @@ export default function Navbar({isLoggedIn},{setLoggedIn}) {
             </button>
         </Link>
         );
-    };
-
-    const handleLogout = (e) => {
-        // Perform logout actions here
-        e.preventDefault();
-        setLoggedIn(false);
-        navigate('/');
     };
 
     // Render Navbar with only home button on login page
@@ -73,7 +65,7 @@ export default function Navbar({isLoggedIn},{setLoggedIn}) {
                         </button>
                         <form className="dropdown-menu p-4">
                         {isLoggedIn ? (
-                            <button type="submit" onClick={handleLogout()} className="btn btn-primary">Logout</button>
+                            <button type="submit" className="btn btn-primary">Logout</button>
                         ) : (
                             <>
                                 <p>Please login to continue</p>

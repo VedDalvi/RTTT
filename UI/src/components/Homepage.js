@@ -31,7 +31,7 @@ export default function Homepage({ isLoggedIn, setLoggedIn }) {
 
   return (
     <div ref={topRef}>
-      <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
+      <Navbar isLoggedIn={isLoggedIn}/>
       <div id="mySidenav" className="sidenav">
         <button className="closebtn" onClick={closeNav}>&times;</button>
         <Link to="#" onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>Home</Link>
