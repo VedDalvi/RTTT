@@ -1,12 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useRef} from 'react'
 import Navbar from './navbar/Navbar';
 import arr from './images/rightar.png'
 import nav from './images/navicon.png'
 import Format from './format/Format'
 import Features from './features/Features'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Homepage(props) {
+export default function Homepage(props, { isLoggedIn }) {
   const openNav = () => {
     document.getElementById("mySidenav").style.width = "250px";
   };
@@ -17,9 +17,21 @@ export default function Homepage(props) {
   const topRef = useRef(null);
   const formatRef = useRef(null);
   const featuresRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleTranslateNow = () => {
+    // Check if user is logged in (you can implement your logic here)
+
+    if (!isLoggedIn) {
+      navigate('/signup');
+    } else {
+      navigate('/translate');
+    }
+  };
+
   return (
     <div ref={topRef}>
-      <Navbar/>
+      <Navbar isLoggedIn={isLoggedIn}/>
       <div id="mySidenav" className="sidenav">
         <button className="closebtn" onClick={closeNav}>&times;</button>
         <Link to="#" onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>Home</Link>
@@ -36,7 +48,7 @@ export default function Homepage(props) {
                 <font style={{top:'10px',position: 'relative'}}>Offers translation of <b>English Documents</b> to <b>Konkani</b>.<br/>Supports <b>plain text, documents</b> and <b>image</b> translations.<br/><br/>
                 Also <b>video captioning</b> from <b>English to Konkani</b> is supported.</font>
             </div>
-            <Link style={{textDecoration: 'none'}} to="/translate" className="button1"><img src={arr} alt="" /><font>TRANSLATE NOW</font></Link>
+            <Link style={{textDecoration: 'none'}} onClick={handleTranslateNow} className="button1"><img src={arr} alt="" /><font>TRANSLATE NOW</font></Link>
             <div className="layout1c">
               Reliable and hassle-free Translations
             </div>
