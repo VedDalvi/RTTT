@@ -2,7 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const multer  = require('multer');
 const mysql = require('mysql');
-const { register,login } = require("./controllers.js");
+const fs = require('fs');
+const bodyParser = require('body-parser');
+
+const { register,login,deleteFile } = require("./controllers.js");
 require('dotenv').config();
 
 
@@ -25,17 +28,18 @@ app.use(bodyParser.json());
 
 app.post('/upload/pdf', upload.single('file'), function (req, res, next) {
   console.log(req.file.filename);
+  deleteFile(process.env.uploads + "/" + req.file.filename);
   res.send(req.file.filename)
 });
 
 app.post('/upload/image', upload.single('image'), function (req, res, next) {
   console.log(req.file.filename);
+  setTimeout(()=>deleteFile(process.env.uploads + "/" + req.file.filename), 7000)
   res.send(req.file.filename)
 });
 
-app.post('/register', register);
-
-app.post('/login', login);
+// app.post('/register', register);
+// app.post('/login', login);
 
 
 
