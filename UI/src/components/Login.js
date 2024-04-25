@@ -1,9 +1,11 @@
 import React,{ useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
-export default function Login() {
+
+export default function Login({ setLoggedIn }) {
     const [email, setEmail] = useState("");
     const [pw, setPassword] = useState("");
+    const navigate=useNavigate();
     const validateUrPw = () =>{
       if (!email) {
         alert("Please enter a valid email address");
@@ -28,7 +30,9 @@ export default function Login() {
     const handlelogin = (e) => {
       e.preventDefault();
       if (validateUrPw()) {
-        console.log("Valid form submitted");
+        console.log("Valid form submitted"); 
+        setLoggedIn(true);
+        navigate('/');
       }
     };
 
