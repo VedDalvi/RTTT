@@ -27,14 +27,14 @@ export default function Login({ setLoggedIn }) {
       return true;
     }
 
-    const handlelogin = (e) => {
-      e.preventDefault();
-      if (validateUrPw()) {
-        console.log("Valid form submitted"); 
-        setLoggedIn(true);
-        navigate('/');
-      }
-    };
+  const handlelogin = (e) => {
+    e.preventDefault();
+    if (validateUrPw()) {
+      console.log("Valid form submitted"); 
+      setLoggedIn(true);
+      navigate('/');
+    }
+  };
 
   return (
     <>

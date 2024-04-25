@@ -20,7 +20,7 @@ export default function App() {
     },
     {
       path:'/translate',
-      element:<Translate/>
+      element:<Translate isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
     },
     {
       path:'/about',

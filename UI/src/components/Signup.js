@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 
 export default function Signup() {
@@ -7,6 +7,7 @@ export default function Signup() {
     const [email, setEmail] = useState("");
     const [pw1, setPw1] = useState("");
     const [pw2, setPw2] = useState("");
+    const navigate=useNavigate();
 
     const validateUrPw = () => {
         //Username Validation
@@ -54,6 +55,7 @@ export default function Signup() {
         e.preventDefault();
         if (validateUrPw()) {
             console.log("Valid form submitted");
+            navigate('/login');
         }
     };
 

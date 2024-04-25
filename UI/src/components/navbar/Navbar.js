@@ -4,11 +4,11 @@ import usr from './user.png'
 import abt from './abt.png'
 import home from './home.png'
 import sep from './separator.png'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 
-export default function Navbar(props) {
-        const location = useLocation();
-
+export default function Navbar({isLoggedIn},{setLoggedIn}) {
+    const location = useLocation();
+    const navigate=useNavigate();
     // Function to render the home button
     const renderHomeButton = () => {
         return (
@@ -18,6 +18,13 @@ export default function Navbar(props) {
             </button>
         </Link>
         );
+    };
+
+    const handleLogout = (e) => {
+        // Perform logout actions here
+        e.preventDefault();
+        setLoggedIn(false);
+        navigate('/');
     };
 
     // Render Navbar with only home button on login page
@@ -65,17 +72,13 @@ export default function Navbar(props) {
                             <img src={usr} width="40" height="40" className="img-fluid" alt=""/>&emsp;User
                         </button>
                         <form className="dropdown-menu p-4">
-                            <div className="form-group">
-                                <label htmlFor="exampleDropdownFormEmail2">Username</label>
-                                <input type="email" className="form-control" id="exampleDropdownFormEmail2" placeholder="Username"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleDropdownFormPassword2">Password</label>
-                                <input type="password" className="form-control" id="exampleDropdownFormPassword2" placeholder="Password"/>
-                            </div>
-                            <Link to="/"><button type="submit" className="btn btn-primary">Sign in</button></Link>
-                            <div className="dropdown-divider"></div>
-                            <Link style={{textDecoration:'none'}} to="/signup" className="dropdown-item" href="/">Not a member? Sign up</Link>
+                        {isLoggedIn ? (
+                            <button type="submit" onClick={handleLogout()} className="btn btn-primary">Logout</button>
+                        ) : (
+                            <>
+                                <p>Please login to continue</p>
+                            </>
+                        )}
                         </form>
                     </li>
                 </ul>

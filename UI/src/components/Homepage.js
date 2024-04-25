@@ -6,7 +6,7 @@ import Format from './format/Format'
 import Features from './features/Features'
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Homepage(props, { isLoggedIn }) {
+export default function Homepage({ isLoggedIn, setLoggedIn }) {
   const openNav = () => {
     document.getElementById("mySidenav").style.width = "250px";
   };
@@ -31,7 +31,7 @@ export default function Homepage(props, { isLoggedIn }) {
 
   return (
     <div ref={topRef}>
-      <Navbar isLoggedIn={isLoggedIn}/>
+      <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
       <div id="mySidenav" className="sidenav">
         <button className="closebtn" onClick={closeNav}>&times;</button>
         <Link to="#" onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>Home</Link>
