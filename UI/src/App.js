@@ -8,7 +8,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 
 export default function App() {
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   //createBrowserRouter is the recommended router for all React Router web projects. It uses the DOM History API to update the URL and manage the history stack.
   const router = createBrowserRouter([
@@ -24,7 +24,7 @@ export default function App() {
     },
     {
       path:'/about',
-      element:<About/>
+      element:<About isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
     },
     {
       path:'/signup',
