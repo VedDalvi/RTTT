@@ -40,18 +40,18 @@ export default function Login({ setLoggedIn }) {
     <>
     <Navbar/>
     <div className="main">
-      <div className="sub-main" style={{height:"350px"}}>
-        <h1 className="title">Login</h1>
-        <div className="contnt">
+      <div className="sub-main-login">
+        <h1 className="title-login">Login</h1>
+        <div className="contnt-login">
           <form onSubmit={handlelogin}>
-              <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} className="input-signup"/>
+              <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} className="input-login"/>
               <br/>
-              <input type="password" placeholder="Enter password" value={pw} onChange={(e) => setPassword(e.target.value)} className="input-signup"/>
+              <input type="password" placeholder="Enter password" value={pw} onChange={(e) => setPassword(e.target.value)} className="input-login"/>
               <div className="Login-button" style={{top:"140px",position:"absolute"}}>
-                <button type="submit" className="button2">Login</button>
+                <button type="submit" className="button2-login">Login</button>
               </div>
-              <div className="link1" style={{top:"250px"}}>
-                  Don't have an account? <Link to="/signup" style={{top:"10px",position:"relative"}}>Create Account</Link>
+              <div className="link2">
+                  Don't have an account? <Link to="/signup">Create Account</Link>
               </div>
           </form>
         </div>
