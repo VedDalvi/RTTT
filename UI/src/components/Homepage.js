@@ -37,7 +37,7 @@ export default function Homepage({ isLoggedIn, setLoggedIn }) {
         <Link to="#" onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}>Home</Link>
         <Link to="#" onClick={() => formatRef.current.scrollIntoView({ behavior: "smooth" })}>Formats Supported</Link>
         <Link to="#" onClick={() => featuresRef.current.scrollIntoView({ behavior: "smooth" })}>Features</Link>
-        <Link to='/Translate'>Translate</Link>
+        <Link onClick={handleTranslateNow}>Translate</Link>
         <Link to='/Signup'>Sign Up</Link>
         <Link to='/Login'>Log in</Link>
       </div>
