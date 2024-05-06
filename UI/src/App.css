@@ -1,4 +1,9 @@
-
+.container-fluid {
+    z-index: 1;
+    position: relative;
+    padding-left: 0px;
+    padding-right: 0px;
+}
 .container {
     max-width: 2000px;
 }
@@ -1048,7 +1053,7 @@ p {
         width:54%;
         margin-left: 0px;
         margin-bottom: 10px;
-        font-size: 10px;
+        font-size: 20px;
     }
     .sidenav {
         padding-top: 15px;
