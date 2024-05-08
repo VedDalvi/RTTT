@@ -6,40 +6,48 @@ export default function Features() {
             <div className="col">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Document Translation</h5>
-                        <p className="card-text">Desc...</p>
+                        <h5 className="card-title"><font>Text Translations</font></h5>
+                        <p className="card-text">Translate English written text into Konkani, aiding communication and understanding across language barriers.</p>
                     </div>
                 </div>
             </div>
             <div className="col">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Image Translation</h5>
-                        <p className="card-text">Desc...</p>
+                        <h5 className="card-title"><font>Document Translation</font></h5>
+                        <p className="card-text">Translate text content from documents, such as PDFs or DOCX files, into another language while preserving formatting.</p>
                     </div>
                 </div>
             </div>
             <div className="col">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Video Captioning</h5>
-                        <p className="card-text">Desc...</p>
+                        <h5 className="card-title"><font>Image Translation</font></h5>
+                        <p className="card-text"> Extract text from images and translate it into another language, enabling understanding of text within visual content.</p>
                     </div>
                 </div>
             </div>
             <div className="col">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Neural Machine Translation</h5>
-                        <p className="card-text">Desc...</p>
+                        <h5 className="card-title"><font>Video Captioning</font></h5>
+                        <p className="card-text">Generate subtitles or captions for English videos in Konkani language, enhancing accessibility and comprehension for viewers.</p>
                     </div>
                 </div>
             </div>
             <div className="col">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">View Previous Translations</h5>
-                        <p className="card-text">Desc...</p>
+                        <h5 className="card-title"><font>Neural Machine Translation</font></h5>
+                        <p className="card-text">Utilize advanced neural networks to translate text between languages with high accuracy and contextual understanding.</p>
+                    </div>
+                </div>
+            </div>
+            <div className="col">
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title"><font>View Previous Translations</font></h5>
+                        <p className="card-text">Access a history of previously translated text, allowing users to revisit and reuse translations for convenience and reference.</p>
                     </div>
                 </div>
             </div>

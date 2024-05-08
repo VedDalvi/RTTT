@@ -71,7 +71,10 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
                         </button>
                         <form className="dropdown-menu p-4">
                         {isLoggedIn ? (
-                            <button type="submit" className="btn btn-primary" onClick={handleLogout}>Logout</button>
+                            <>
+                                <button type="submit" className="btn btn-primary" onClick={handleLogout}>Logout</button><br/><br/>
+                                <Link className="btn btn-primary">Translations</Link>
+                            </>
                         ) : (
                             <>
                                 <p>Please login to continue</p>
