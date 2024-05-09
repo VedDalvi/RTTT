@@ -37,6 +37,7 @@ function VideoTranslation() {
 
   const validateAndSetVideo = (file) => {
     if (file) {
+      console.log("Working");
       const validFormats = ['.mp4'];
       const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
       if (validFormats.includes(extension)) {
@@ -50,9 +51,27 @@ function VideoTranslation() {
     }
   };
 
-  const submitForm = (event) => {
-    if (event) {
-      event.preventDefault();
+  const submitForm = async (file) => {
+    const formData = new FormData();
+    formData.append('video', file);
+    try{
+          const response = await fetch('http://localhost:3001/upload/video', {
+            method: 'POST',
+            body: formData,
+      })
+      const data = await response.json();
+
+      if (response.ok) {
+          alert('File uploaded successfully');
+          console.log(data);
+          //setTranslatedFileUrl(data.translatedFileUrl);
+      } else {
+          alert('File upload failed');
+          console.error(data);
+      }
+    }
+    catch(err){
+      console.log(err)
     }
   };
 

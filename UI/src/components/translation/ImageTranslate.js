@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-
+import { Link } from 'react-router-dom';
 function ImageTranslation() {
   const formRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [translatedFileUrl, setTranslatedFileUrl] = useState(null);
   //const [imageURL, setImageURL] = useState(null);
 
   const handleDragOver = (e) => {
@@ -64,6 +65,7 @@ function ImageTranslation() {
       if (response.ok) {
           alert('File uploaded successfully');
           console.log(data);
+          setTranslatedFileUrl(data.translatedFileUrl);
       } else {
           alert('File upload failed');
           console.error(data);
@@ -94,6 +96,12 @@ function ImageTranslation() {
               <>
                 <p align="center" className="dispimgup">Image Submitted: {selectedImage.name}</p>
               </>
+            )}
+            {translatedFileUrl && (
+              <div className="dwimg">
+                <p>Translated file:</p>
+                <Link to={translatedFileUrl} style={{ textDecoration: 'none'}} className="dwimgbutton" download>Download File</Link>
+              </div>
             )}
           </div>
         </div>

@@ -470,6 +470,7 @@ p {
     height: 378px;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
+    font-family: "Noto Sans Devanagari", sans-serif;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
@@ -541,6 +542,27 @@ p {
     opacity:0.5;
     margin-top:50px;
 }
+.dwfile {
+    padding: 5px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.dwfilebutton {
+    padding: 14px;
+    border: #000000 solid 1px;
+    border-radius: 5px;
+    font-family: 'Fredoka';
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: #00ffc3;
+    transition: 400ms;
+}
+.dwfilebutton:hover {
+    transition: 400ms;
+    color: rgb(255, 255, 255);
+    background-color:#12CDD4
+}
 /*End of File Translate Style*/
 
 /*Image Translate Style*/
@@ -567,7 +589,7 @@ p {
     margin:auto;
     width:100%;
     opacity:0.8;
-    margin-top:50px;
+    margin-top:20px;
 }
 .imgupload .iolabel {
     list-style: none;
@@ -584,6 +606,29 @@ p {
     margin:"auto";
     margin-top: 33px;
     opacity: 0.8;
+}
+.dwimg {
+    padding: 5px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    bottom: 60px;
+    position: relative;
+}
+.dwimgbutton {
+    padding: 14px;
+    border: #000000 solid 1px;
+    border-radius: 5px;
+    font-family: 'Fredoka';
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: #00ffc3;
+    transition: 400ms;
+}
+.dwimgbutton:hover {
+    transition: 400ms;
+    color: rgb(255, 255, 255);
+    background-color:#12CDD4
 }
 /*End of Image Translate Style*/
 

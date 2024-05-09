@@ -5,12 +5,8 @@ function TextTranslation() {
   const options = ["English", "Konkani"];
   const [lang1, setLang1] = useState(options[0]);
   const [lang2, setLang2] = useState(options[1]);
-  const [out_text, setText] = useState('');
-
-  const textOutput = (event) => {
-    const newState = event.target.value;
-    setText(newState);
-  };
+  const [inputText, setInputText] = useState('');
+  const [outputText, setOutputText] = useState('');
 
   const handleLang1Change = (e) => {
     const selectedLang = e.target.value;
@@ -30,8 +26,31 @@ function TextTranslation() {
     }
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(inputText);
+    try{
+          const response = await fetch('http://localhost:3001/text', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"iptext": inputText})
+      })
+      const data = await response.json();
+
+      if (response.ok) {
+          console.log(data);
+          setOutputText(data.translatedText);
+      } else {
+          alert('Text Translation failed');
+          console.error(data);
+      }
+    }
+    catch(err){
+      console.log(err)
+    }
   };
 
   return (
@@ -55,18 +74,17 @@ function TextTranslation() {
           </div>
           <div className="textar1">
             <form onSubmit={handleSubmit}>
-              <textarea className="txtar1" id="exampleFormControlTextarea1" onChange={textOutput}  row="9" placeholder="Type to translate."/>
+              <textarea id="iptext" value={inputText} className="txtar1" onChange={(e) => setInputText(e.target.value)}  row="9" placeholder="Type to translate."/>
               <button type="submit" className="btn btn-primary">Translate to {lang2}</button>
             </form>
           </div>
           <div className="textar2">
-            <textarea className="txtar2" value={out_text} id="exampleFormControlTextarea1" row="9" placeholder="Translation" disabled/>
+            <textarea className="txtar2" value={outputText}  row="9" placeholder="Translation" />
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 
 export default TextTranslation;

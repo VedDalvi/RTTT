@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-
+import { Link } from 'react-router-dom';
 function FileTranslate() {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
-
-  const allowedFileTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+  const [translatedFileUrl, setTranslatedFileUrl] = useState(null);
+  const allowedFileTypes = ['application/pdf'];
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ function FileTranslate() {
         setErrorMessage('');
       } else {
         setUploadedFile(null);
-        alert('Invalid file type. Please upload a PDF or DOCX file.');
+        alert('Invalid file type. Please upload a PDF file.');
       }
     }
   };
@@ -62,6 +62,7 @@ function FileTranslate() {
       if (response.ok) {
           alert('File uploaded successfully');
           console.log(data);
+          setTranslatedFileUrl(data.translatedFileUrl);
       } else {
           alert('File upload failed');
           console.error(data);
@@ -84,7 +85,7 @@ function FileTranslate() {
             <form onSubmit={handleSubmit}>
               <label align="center">Drag and Drop <br/>or<br/><br/></label>        
               <div className="input-group">
-                <input type="file" className="form-control" id="inputGroupFile04" aria-label="Upload file" onChange={handleFileChange} accept=".pdf, .docx"/>
+                <input type="file" className="form-control" id="inputGroupFile04" aria-label="Upload file" onChange={handleFileChange} accept=".pdf"/>
                 <button className="btn btn-primary" type="submit" id="inputGroupFileAddon04" style={{marginLeft:"20px"}} disabled={!uploadedFile}>Upload</button>
               </div>
             </form>
@@ -96,6 +97,12 @@ function FileTranslate() {
             {uploadedFile && !errorMessage && (
               <div>
                 <p>File Uploaded: {uploadedFile.name}</p>
+              </div>
+            )}
+            {translatedFileUrl && (
+              <div className='dwfile'>
+                <p>Translated file:</p>
+                <Link style={{ textDecoration: 'none'}} className='dwfilebutton' to={translatedFileUrl} download>Download File</Link>
               </div>
             )}
           </div> 

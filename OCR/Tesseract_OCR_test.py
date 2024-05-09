@@ -12,7 +12,10 @@ import PyPDF2
 from pdf2image import convert_from_path
 import pytesseract
 from PIL import Image
+import docx
+import dotenv
 
+dotenv.load_dotenv()
 # Function to extract text from image using OCR
 def extract_text_from_image(image_path):
     # Open the image file
@@ -25,9 +28,9 @@ def extract_text_from_image(image_path):
     text = pytesseract.image_to_string(gray_img)
 
     translator = EasyGoogleTranslate(
-    source_language='en',
-    target_language='gom',
-    timeout=30
+        source_language='en',
+        target_language='gom',
+        timeout=30
     )
 
     print("Enter Sample Text in English: ")
@@ -35,6 +38,9 @@ def extract_text_from_image(image_path):
 
     print("\n\nTranslating Input Text...")
     result = translator.translate(engsample)
+    document = docx.Document()
+    document.add_paragraph(result)
+    document.save(os.getenv('savedDocx'))
     print("\n\nTranslated Text: ")
     print(result.encode('utf-8').decode(sys.stdout.encoding, 'ignore'))
     return text
@@ -73,6 +79,9 @@ def extract_text_from_pdf(pdf_path):
 
         print("\n\nTranslating Input Text...")
         result = translator.translate(engsample)
+        document = docx.Document()
+        document.add_paragraph(result)
+        document.save(os.getenv('savedDocx'))
         print("\n\nTranslated Text: ")
         print(result.encode('utf-8').decode(sys.stdout.encoding, 'ignore'))
         return pdf_text
@@ -93,9 +102,9 @@ def extract_text(input_path):
         text = "Unsupported file format"
 
 # Path to your input file (image or PDF)
-# input_path = r'C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\OCR\\content\\Introduction to NoSql.pdf'  # Change this to your input file path
+#input_path = r'C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\OCR\\content\\Introduction to NoSql.pdf'  # Change this to your input file path
 if len(sys.argv) != 2:
-    print("Usage: python Tesseract_OCR_test.py <file_path>")
+    print("Usage: python Tesseract_OCR_test.py")
     sys.exit(1)
 
 # Path to the uploaded file provided as command-line argument
