@@ -42,7 +42,7 @@ def extract_text_from_image(image_path):
     document.add_paragraph(result)
     document.save(os.getenv('savedDocx'))
     print("\n\nTranslated Text: ")
-    print(result.encode('utf-8').decode(sys.stdout.encoding, 'ignore'))
+    print(result)
     return text
 
 # Function to extract text from PDF using PyPDF2
@@ -83,7 +83,7 @@ def extract_text_from_pdf(pdf_path):
         document.add_paragraph(result)
         document.save(os.getenv('savedDocx'))
         print("\n\nTranslated Text: ")
-        print(result.encode('utf-8').decode(sys.stdout.encoding, 'ignore'))
+        print(result)
         return pdf_text
 
 # Function to extract text based on file type (image or PDF)

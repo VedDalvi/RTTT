@@ -63,7 +63,7 @@ app.post('/upload/pdf', upload.single('file'), function (req, res, next) {
   const filePath = path.join(process.env.uploads, req.file.filename);
 
   // Spawn a child process to execute the Python script
-  const pythonProcess = spawn('python', [process.env.file, filePath]);
+  const pythonProcess = spawn('python', [process.env.file, filePath], {env: { ...process.env, PYTHONIOENCODING: 'utf-8' }});
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(`Python script stdout: ${data}`);
@@ -88,7 +88,7 @@ app.post('/upload/image', upload.single('image'), function (req, res, next) {
   const imagePath = path.join(process.env.uploads, req.file.filename);
   
   // Spawn a child process to execute the Python script for image translation
-  const pythonProcess = spawn('python', [process.env.file, imagePath]); 
+  const pythonProcess = spawn('python', [process.env.file, imagePath], {env: { ...process.env, PYTHONIOENCODING: 'utf-8' }}); 
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(`Python script stdout: ${data}`);
