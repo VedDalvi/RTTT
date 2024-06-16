@@ -39,11 +39,11 @@ app.post('/text', function(req, res, next) {
   let translatedText = '';
 
   // Spawn a Child process to execute the py script
-  const pythonProcess = spawn('python', [process.env.textTrans, iptext]);
+  const pythonProcess = spawn('python', [process.env.textTrans, iptext],{env: { ...process.env, PYTHONIOENCODING: 'utf-8' }});
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(`Python script stdout: ${data}`);
-    translatedText += data.toString();
+    translatedText += data.toString('utf-8');
     res.json({translatedText});
   });
 
@@ -111,6 +111,24 @@ app.post('/upload/image', upload.single('image'), function (req, res, next) {
 app.post('/upload/video', upload.single('video'), function (req, res, next) {
   console.log(req.file.filename);
   const videoPath = path.join(process.env.uploads, req.file.filename);
+
+  // Spawn a child process to execute the Python script for Video Captioning
+  const pythonProcess = spawn('python', [process.env.caption, videoPath]); 
+
+  pythonProcess.stdout.on('data', (data) => {
+    console.log(`Python script stdout: ${data}`);
+  });
+
+  pythonProcess.stderr.on('data', (data) => {
+    console.error(`Python script stderr: ${data}`);
+  });
+
+  pythonProcess.on('close', (code) => {
+    console.log(`Python script child process exited with code ${code}`);
+    const translatedFileUrl = process.env.transFile;
+    res.json({'translatedFileUrl': 'http://localhost:3001/translated_output.docx'});
+  });
+
   setTimeout(()=>deleteFile(process.env.uploads + "/" + req.file.filename),7000);
 });
 
