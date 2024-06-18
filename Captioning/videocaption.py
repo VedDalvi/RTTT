@@ -1,18 +1,11 @@
-!apt-get install fonts-deva-extra
-!pip install speechRecognition
-!apt install imagemagick
-!pip install moviepy
-!pip install easygoogletranslate
-!pip install ffmpeg-python
-!pip install ffprobe
-!pip install pydub
-!pip install moviepy SpeechRecognition noisereduce pydub
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 import moviepy.editor as mp
 import speech_recognition as sr
 import os
 from easygoogletranslate import EasyGoogleTranslate
+import cairo
+import dotenv
 
+dotenv.load_dotenv()
 # Function to split video into 3-second segments
 def split_video(video_path):
     video = mp.VideoFileClip(video_path)
@@ -44,30 +37,50 @@ def translate_text(text, target_language):
     translated_text = translator.translate(text)
     return translated_text
 
+# Function to create a text image using Cairo
+def create_text_image_with_cairo(text, width, height, font_size):
+    # Create a transparent surface
+    surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+    context = cairo.Context(surface)
+    
+    # Set transparent background
+    context.set_source_rgba(0, 0, 0, 0)
+    context.paint()
+    
+    # Draw text
+    context.set_source_rgb(1, 1, 1)  # White text
+    context.select_font_face("gargi", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+    context.set_font_size(font_size)
+    
+    # Calculate text position
+    text_extents = context.text_extents(text)
+    x = (width - text_extents.width) / 2
+    y = height - text_extents.height
+    
+    context.move_to(x, y)
+    context.show_text(text)
+    
+    # Save to PNG file
+    text_image_path = "text_image.png"
+    surface.write_to_png(text_image_path)
+    
+    return text_image_path
+
 # Function to overlay translated text onto video with a background
 def overlay_translated_text(video_clip, translated_text):
     # Calculate font size based on video dimensions
     width, height = video_clip.size
     font_size = int(min(width, height) * 0.05)  # Adjust font size based on video size
-
-    # Create TextClip with translated text and calculated font size
-    txt_clip = mp.TextClip(translated_text, fontsize=font_size, color='white', font='gargi')
-
-    # Calculate text clip duration to match video duration
-    txt_clip = txt_clip.set_duration(video_clip.duration)
-
-    # Create a RectangleClip as the background for the text
-    rect_width = txt_clip.w + 20  # Add padding around the text
-    rect_height = txt_clip.h + 10
-    rect_color = (0, 0, 0)  # Black background color
-    rect_clip = mp.ColorClip(size=(rect_width, rect_height), color=rect_color)
-
-    # Position the text clip at the center bottom of the background rectangle
-    txt_clip = txt_clip.set_position(('center', 'bottom'))
-
-    # Composite video with text and background rectangle
-    video_with_translated_text = mp.CompositeVideoClip([video_clip, rect_clip.set_position(('center', 'bottom')), txt_clip])
-
+    
+    # Create text image with Cairo
+    text_image_path = create_text_image_with_cairo(translated_text, width, int(height * 0.1), font_size)
+    
+    # Create an ImageClip from the text image
+    txt_clip = mp.ImageClip(text_image_path).set_duration(video_clip.duration).set_position(('center', 'bottom'))
+    
+    # Composite video with text image
+    video_with_translated_text = mp.CompositeVideoClip([video_clip, txt_clip])
+    
     return video_with_translated_text
 
 # Main function
@@ -97,19 +110,22 @@ def main(video_path, target_language):
 
     # Concatenate processed segments into one video
     final_video = mp.concatenate_videoclips(processed_segments)
-
+    save_path= r"C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\content\\translated_vid.mp4"
     # Export the final video with overlaid translated text
-    final_video_path = "./videocaptions.mp4"
-    final_video.write_videofile(final_video_path, codec='libx264')
+    
+    final_video.write_videofile(save_path, codec='libx264')
 
-    # Clean up temporary audio files
+    # Clean up temporary audio and text image files
     for i in range(len(segments)):
         audio_path = f"segment_{i}.wav"
         if os.path.exists(audio_path):
             os.remove(audio_path)
+    
+    if os.path.exists("text_image.png"):
+        os.remove("text_image.png")
 
 # Example usage
 if __name__ == "__main__":
-    video_path = "./what.mp4"
+    video_path = r"C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\test_vid.mp4"
     target_language = "gom"  # Change to the desired target language ISO 639-1 code (e.g., "hi" for Hindi)
     main(video_path, target_language)
