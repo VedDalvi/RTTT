@@ -1,7 +1,7 @@
 import React from 'react'
 import Frm from './Frm'
 import sep from './images/separator.png'
-import ico1 from './images/word.png'
+import ico1 from './images/pdf.png'
 import ico2 from './images/img.png'
 import ico3 from './images/video.png'
 export default function Format() {
