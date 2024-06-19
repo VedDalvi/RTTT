@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-
+import { Link } from 'react-router-dom';
 function VideoTranslation() {
   const formRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [translatedFileUrl, setTranslatedFileUrl] = useState(null);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -62,9 +63,8 @@ function VideoTranslation() {
       const data = await response.json();
 
       if (response.ok) {
-          alert('File uploaded successfully');
           console.log(data);
-          //setTranslatedFileUrl(data.translatedFileUrl);
+          setTranslatedFileUrl(data.translatedFileUrl);
       } else {
           alert('File upload failed');
           console.error(data);
@@ -88,7 +88,13 @@ function VideoTranslation() {
             {selectedVideo && (
               <>
                 <p align="center" className="dispvideoup">Video Submitted: {selectedVideo.name}</p>
+                <p align="center" className="dispvidprogress">Please wait for the video to process</p>
               </>
+            )}
+            {translatedFileUrl && (
+              <div className="dwvid">
+                <Link to={translatedFileUrl} style={{ textDecoration: 'none'}} className="dwvidbutton" download>Download File</Link>
+              </div>
             )}
           </div>
         </div>

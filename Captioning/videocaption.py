@@ -4,6 +4,7 @@ import os
 from easygoogletranslate import EasyGoogleTranslate
 import cairo
 import dotenv
+import sys
 
 dotenv.load_dotenv()
 # Function to split video into 3-second segments
@@ -110,7 +111,7 @@ def main(video_path, target_language):
 
     # Concatenate processed segments into one video
     final_video = mp.concatenate_videoclips(processed_segments)
-    save_path= r"C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\content\\translated_vid.mp4"
+    save_path= r"C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\content\\translated_video.mp4"
     # Export the final video with overlaid translated text
     
     final_video.write_videofile(save_path, codec='libx264')
@@ -126,6 +127,6 @@ def main(video_path, target_language):
 
 # Example usage
 if __name__ == "__main__":
-    video_path = r"C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\test_vid.mp4"
-    target_language = "gom"  # Change to the desired target language ISO 639-1 code (e.g., "hi" for Hindi)
+    video_path = sys.argv[1]
+    target_language = "gom"
     main(video_path, target_language)

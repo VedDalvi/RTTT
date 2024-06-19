@@ -671,8 +671,31 @@ p {
 .videoupload p {
     font-size: large;
     margin: auto;
-    margin-top: 33px;
+    margin-top: -4px;
     opacity: 0.8;
+}
+.dwvid {
+    padding: 5px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    bottom: -30px;
+    position: relative;
+}
+.dwvidbutton {
+    padding: 14px;
+    border: #000000 solid 1px;
+    border-radius: 5px;
+    font-family: 'Fredoka';
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: #00ffc3;
+    transition: 400ms;
+}
+.dwvidbutton:hover {
+    transition: 400ms;
+    color: rgb(255, 255, 255);
+    background-color:#12CDD4
 }
 /*End of Video Translate Style*/
 

@@ -31,6 +31,7 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.static('C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\OCR\\content'));
+app.use(express.static('C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\content'));
 //TEXT
 app.post('/text', function(req, res, next) {
   const { iptext } = req.body;
@@ -113,7 +114,7 @@ app.post('/upload/video', upload.single('video'), function (req, res, next) {
   const videoPath = path.join(process.env.uploads, req.file.filename);
 
   // Spawn a child process to execute the Python script for Video Captioning
-  const pythonProcess = spawn('python', [process.env.caption, videoPath]); 
+  const pythonProcess = spawn('python', [process.env.caption, videoPath], {env: { ...process.env, PYTHONIOENCODING: 'utf-8' }}); 
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(`Python script stdout: ${data}`);
@@ -125,11 +126,10 @@ app.post('/upload/video', upload.single('video'), function (req, res, next) {
 
   pythonProcess.on('close', (code) => {
     console.log(`Python script child process exited with code ${code}`);
-    const translatedFileUrl = process.env.transFile;
-    res.json({'translatedFileUrl': 'http://localhost:3001/translated_output.docx'});
+    const translatedFileUrl = process.env.transVid;
+    res.json({'translatedFileUrl': 'http://localhost:3001/translated_video.mp4'});
   });
-
-  setTimeout(()=>deleteFile(process.env.uploads + "/" + req.file.filename),7000);
+  setTimeout(()=>deleteFile(process.env.uploads + "/" + req.file.filename),300000);
 });
 
 
