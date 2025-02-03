@@ -1,8 +1,9 @@
 import React,{ useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
+import axios from 'axios';
 
-export default function Login({ setLoggedIn }) {
+export default function Login() {
     const [email, setEmail] = useState("");
     const [pw, setPassword] = useState("");
     const navigate=useNavigate();
@@ -27,12 +28,21 @@ export default function Login({ setLoggedIn }) {
       return true;
     }
 
-  const handlelogin = (e) => {
+  const handlelogin = async (e) => {
     e.preventDefault();
     if (validateUrPw()) {
-      console.log("Valid form submitted"); 
-      setLoggedIn(true);
-      navigate('/');
+      try {
+        const response = await axios.post('http://localhost:3001/login', {email,password:pw});
+        
+        const { token } = response.data;
+        localStorage.setItem('token', token); // Store the token in localStorage
+        localStorage.setItem('username', response.data.username);
+        console.log("Valid form submitted"); 
+        navigate('/');
+        window.location.reload();
+      } catch (err) {
+        alert('The email address and password combination entered do not match any account. Please try again.');
+      }
     }
   };
 

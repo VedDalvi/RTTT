@@ -1,14 +1,23 @@
-import React from 'react'
-import def from './ico.png'
-import usr from './user.png'
-import abt from './abt.png'
-import home from './home.png'
-import sep from './separator.png'
+import React, {useEffect,useState} from 'react';
+import def from './ico.png';
+import usr from './user.png';
+import abt from './abt.png';
+import home from './home.png';
+import sep from './separator.png';
 import { Link, useLocation, useNavigate} from 'react-router-dom';
 
 export default function Navbar({isLoggedIn, setLoggedIn}) {
     const location = useLocation();
     const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
+
     // Function to render the home button
     const renderHomeButton = () => {
         return (
@@ -21,8 +30,10 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
     };
 
     const handleLogout = () => {
-        navigate('/', { replace: true })
+        localStorage.removeItem('token');
         setLoggedIn(false);
+        navigate('/', { replace: true })
+        window.location.reload();
     };
 
     // Render Navbar with only home button on login page
@@ -66,18 +77,26 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
                         </button></Link>
 
                     <li className="nav-item dropdown">
-                        <button className="bton" href="/" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src={usr} width="40" height="40" className="img-fluid" alt=""/>&emsp;User
-                        </button>
+                        {isLoggedIn && username ? (
+                                <button className="bton" href="/" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src={usr} width="40" height="40" className="img-fluid" alt="" />&emsp;{username}
+                                </button>
+                            ) : (
+                                <button className="bton" href="/" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src={usr} width="40" height="40" className="img-fluid" alt="" />&emsp;User
+                                </button>
+                            )}
                         <form className="dropdown-menu p-4">
                         {isLoggedIn ? (
                             <>
                                 <button type="submit" className="btn btn-primary" onClick={handleLogout}>Logout</button><br/><br/>
-                                <Link className="btn btn-primary">Translations</Link>
+                                <Link className="btn btn-primary" to="/translations">Translations</Link>
                             </>
                         ) : (
                             <>
-                                <p>Please login to continue</p>
+                                <p>Please login/register to continue</p>
+                                <Link className="btn btn-primary" to="/login">Login</Link>
+                                <Link className="btn btn-primary" to="/signup">Register</Link>
                             </>
                         )}
                         </form>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
+import axios from "axios";
 
 export default function Signup() {
     const [uname, setUname] = useState("");
@@ -51,11 +52,19 @@ export default function Signup() {
     };
 
     //Form Validation
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         if (validateUrPw()) {
-            console.log("Valid form submitted");
-            navigate('/login');
+            try {
+                const response = await axios.post('http://localhost:3001/signup', { username:uname,email,password:pw2,});
+                console.log(response);
+                console.log("Valid form submitted");
+                alert('New User Registration Complete. Welcome '+uname);
+                navigate('/login');
+            } catch (err) {
+                console.log(err);
+                alert('Error :'+err+'.');
+            }
         }
     };
 

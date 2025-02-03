@@ -1,4 +1,4 @@
-import React, { useRef} from 'react'
+import React, {useEffect,useState,useRef} from 'react'
 import Navbar from './navbar/Navbar';
 import arr from './images/rightar.png'
 import nav from './images/navicon.png'
@@ -18,17 +18,39 @@ export default function Homepage({ isLoggedIn, setLoggedIn }) {
   const formatRef = useRef(null);
   const featuresRef = useRef(null);
   const navigate = useNavigate();
-
+  const [username, setUsername] = useState("");
+      
+  useEffect(() => {
+      const storedUsername = localStorage.getItem('username');
+      if (storedUsername) {
+          setUsername(storedUsername);
+      }
+  }, []);
+    
   const handleTranslateNow = () => {
-    // Check if user is logged in (you can implement your logic here)
-
+    // Check if user is logged-in to allow using website
     if (!isLoggedIn) {
-      navigate('/signup');
+      navigate('/login');
     } else {
       navigate('/translate');
     }
   };
 
+  const handleTranslations = () => {
+    // Check if user is logged-in to view their translations
+    if (!isLoggedIn) {
+      navigate('/login');
+    } else {
+      navigate('/translations');
+    }
+  };
+
+  const handleLogout = () => {
+      localStorage.removeItem('token');
+      setLoggedIn(false);
+      navigate('/', { replace: true })
+      window.location.reload();
+  };
   return (
     <div ref={topRef}>
       <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
@@ -38,8 +60,18 @@ export default function Homepage({ isLoggedIn, setLoggedIn }) {
         <Link to="#" onClick={() => formatRef.current.scrollIntoView({ behavior: "smooth" })}>Formats Supported</Link>
         <Link to="#" onClick={() => featuresRef.current.scrollIntoView({ behavior: "smooth" })}>Features</Link>
         <Link onClick={handleTranslateNow}>Translate</Link>
-        <Link to='/Signup'>Sign Up</Link>
-        <Link to='/Login'>Log in</Link>
+        <Link onClick={handleTranslations}>Previous Translations</Link>
+        {isLoggedIn && username ? (
+          <>
+            <Link onClick={handleLogout}>Log Out</Link>
+          </>
+        ) : (
+          <>
+            <Link to='/Signup'>Sign Up</Link>
+            <Link to='/Login'>Log in</Link>
+          </>
+        )}
+        
       </div>
       <button className="sidebtn" onClick={openNav}><img src={nav} alt=""/></button> 
       <div className="container">
