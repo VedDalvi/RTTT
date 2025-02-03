@@ -1,14 +1,25 @@
-import React,{ useState } from 'react';
+import React,{ useEffect,useState } from 'react';
 import './App.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';   //Importing React Router
+import { RouterProvider, createBrowserRouter} from 'react-router-dom';   //Importing React Router
 import Homepage from './components/Homepage';
 import Translate from './components/Translate';
 import About from './components/About';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import UserTranslations from './components/UserTranslations';
 
 export default function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState();
+  useEffect(() => {
+    // Check if token is present in localStorage and if it's valid
+    const token = localStorage.getItem('token');
+    if (token) {
+      setLoggedIn(true); // If token exists, the user is logged in
+    } else {
+      setLoggedIn(false); // No token means user is not logged in
+    }
+  }, []); // Empty dependency array ensures this runs once when the app is loaded
 
   //createBrowserRouter is the recommended router for all React Router web projects. It uses the DOM History API to update the URL and manage the history stack.
   const router = createBrowserRouter([
@@ -20,7 +31,7 @@ export default function App() {
     },
     {
       path:'/translate',
-      element:<Translate isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
+      element:<ProtectedRoute> <Translate isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/> </ProtectedRoute>
     },
     {
       path:'/about',
@@ -32,7 +43,11 @@ export default function App() {
     },
     {
       path:'/login',
-      element:<Login setLoggedIn={setLoggedIn}/>
+      element:<Login/>
+    },
+    {
+      path:'/translations',
+      element:<ProtectedRoute><UserTranslations isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/></ProtectedRoute>
     }
   ])
   return (
