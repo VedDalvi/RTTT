@@ -24,7 +24,7 @@ def extract_text(audio_path):
         text = recognizer.recognize_google(audio)
         return text
     except sr.UnknownValueError:
-        return "Could not understand audio"
+        return " "
     except sr.RequestError as e:
         return f"Error: {e}"
 
@@ -79,8 +79,12 @@ def overlay_translated_text(video_clip, translated_text):
     # Create an ImageClip from the text image
     txt_clip = mp.ImageClip(text_image_path).set_duration(video_clip.duration).set_position(('center', 'bottom'))
     
-    # Composite video with text image
-    video_with_translated_text = mp.CompositeVideoClip([video_clip, txt_clip])
+    # Create a background box for the text
+    txt_bg = mp.ColorClip(size=(txt_clip.w + 20, txt_clip.h + 20), color=(0, 0, 0)).set_duration(video_clip.duration)
+    txt_bg = txt_bg.set_position(('center', height - txt_bg.h - 10))
+    
+    # Composite video with text image and background box
+    video_with_translated_text = mp.CompositeVideoClip([video_clip, txt_bg, txt_clip])
     
     return video_with_translated_text
 
