@@ -1,16 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const multer  = require('multer');
-const mysql = require('mysql');
 const fs = require('fs');
 const { spawn } = require('child_process');
 const path = require('path');
 const bodyParser = require('body-parser');
 var logger = require('morgan');
 
-const { register,login,deleteFile } = require("./controllers.js");
+const {signup,login,verifyToken,deleteUser,deleteFile } = require("./controllers.js");
 require('dotenv').config();
-
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -32,6 +30,7 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(express.static('C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\OCR\\content'));
 app.use(express.static('C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\Captioning\\content'));
+
 //TEXT
 app.post('/text', function(req, res, next) {
   const { iptext } = req.body;
@@ -129,12 +128,15 @@ app.post('/upload/video', upload.single('video'), function (req, res, next) {
     const translatedFileUrl = process.env.transVid;
     res.json({'translatedFileUrl': 'http://localhost:3001/translated_video.mp4'});
   });
-  setTimeout(()=>deleteFile(process.env.uploads + "/" + req.file.filename),300000);
+  
 });
 
-
-// app.post('/register', register);
-// app.post('/login', login);
+app.post('/signup', signup);
+app.post('/login', login);
+app.delete('/delete', deleteUser);
+app.get('/protected', verifyToken, (req, res) => {
+  res.json({ message: 'This is a protected route', userId: req.userId });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
