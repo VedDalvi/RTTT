@@ -32,7 +32,7 @@ This project is a website that combines **speech recognition**, **text extractio
 ## 🚀 Technologies Used
 
 ### 🧠 Backend & Core Processing
-- 🐍 **Python** (Whisper, OCR, translation)
+- 🐍 `Python` (Whisper, OCR, translation)
 - 🎙️ `OpenAI Whisper` for speech-to-text
 - 📄 `Tesseract OCR` for image-based text extraction
 - 📚 `PyPDF2` for PDF parsing
