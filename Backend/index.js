@@ -192,7 +192,6 @@ app.post('/upload/video', upload.single('video'), function (req, res, next) {
     res.json({'translatedFileUrl': 'http://localhost:3001/translated_video.mp4','ZipUrl': 'http://localhost:3001/transcripts.zip'});
   });
   
-  setTimeout(()=>deleteFile(process.env.uploads + "/" + req.file.filename), 43200)
 });
 
 app.post('/signup', signup);
