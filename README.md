@@ -39,7 +39,6 @@ This project is a website that combines **speech recognition**, **text extractio
 - 🌐 `EasyGoogleTranslate` for Google Translate API integration
 - 🎥 `moviepy` for video editing
 - 🎨 `cairo` for text image rendering
-- 🧾 `docx` for document export
 - `.env` for file paths and configurations.
 
 ### 🌐 Web Stack
