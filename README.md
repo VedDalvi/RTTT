@@ -1,6 +1,6 @@
 # Real-Time Translator: English Text, PDF & Images Translation/Video Captioning
 
-This project is a Python-based tool that combines **speech recognition**, **text extraction**, and **language translation** to process and translate **video**, **PDF**, and **image** files into **Konkani (gom)** or any other supported language. It uses a combination of `OpenAI Whisper`, `Tesseract OCR`, and `Google Translate` for a robust multimodal translation pipeline.
+This project is a website that combines **speech recognition**, **text extraction**, and **language translation** to process and translate **video**, **PDF**,**image** and **text** files into **Konkani (gom)**. It uses a combination of `OpenAI Whisper`, `Tesseract OCR`, and `Google Translate(EasyGoogleTranslate)` for translation pipeline.
 
 ---
 ## 🖥️ System Requirements
@@ -27,16 +27,23 @@ This project is a Python-based tool that combines **speech recognition**, **text
 - Translates long-form text (auto-chunks > 5000 characters to avoid API limits).
 - Saves translated output as a `translated_output.docx` document.
 
-### ✅ Utilities
-- Uses environment variables via `.env` for file paths and configurations.
-
   ---
 
 ## 🚀 Technologies Used
 
-- 🎙️ `Whisper` (OpenAI) for speech-to-text
+### 🧠 Backend & Core Processing
+- 🐍 **Python** (Whisper, OCR, translation)
+- 🎙️ `OpenAI Whisper` for speech-to-text
 - 📄 `Tesseract OCR` for image-based text extraction
 - 📚 `PyPDF2` for PDF parsing
-- 🌐 `EasyGoogleTranslate` for translations from English to Konkani
+- 🌐 `EasyGoogleTranslate` for Google Translate API integration
 - 🎥 `moviepy` for video editing
-- 🎨 `cairo` for text rendering on videos
+- 🎨 `cairo` for text image rendering
+- 🧾 `docx` for document export
+- `.env` for file paths and configurations.
+
+### 🌐 Web Stack
+- ⚛️ **React.js** (Frontend)
+- 🌐 **Node.js + Express.js** (Backend API)
+- 🗄️ **MySQL** (Database)
+- 🛠️ **phpMyAdmin** (Database GUI)
