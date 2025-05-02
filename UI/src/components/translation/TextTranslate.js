@@ -7,7 +7,7 @@ function TextTranslation() {
   const [lang2, setLang2] = useState(options[1]);
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-
+  
   const handleLang1Change = (e) => {
     const selectedLang = e.target.value;
     setLang1(selectedLang);
@@ -30,26 +30,47 @@ function TextTranslation() {
     event.preventDefault();
     console.log(inputText);
     try{
-          const response = await fetch('http://localhost:3001/text', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"iptext": inputText})
+        const response = await fetch('http://localhost:3001/text', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({"iptext": inputText,"lang1": lang1,"lang2": lang2})
       })
       const data = await response.json();
 
       if (response.ok) {
           console.log(data);
           setOutputText(data.translatedText);
+
+          const userId = localStorage.getItem('userId');
+          const token = localStorage.getItem('token');
+          const saveResponse = await fetch(`http://localhost:3001/user-translations/${userId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              userId: userId,
+              type:'text',
+              inputText:inputText,
+              translatedText: data.translatedText,
+              file_data: 'N/A',
+              filename: 'N/A'
+            })
+          });
+
+          const saveResult = await saveResponse.json();
+          console.log('Saved Text translation to DB:', saveResult);
       } else {
           alert('Text Translation failed');
           console.error(data);
       }
     }
-    catch(err){
-      console.log(err)
+    catch (err) {
+      console.log('Translation or saving failed:', err);
     }
   };
 

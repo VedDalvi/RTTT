@@ -90,7 +90,7 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
                         {isLoggedIn ? (
                             <>
                                 <button type="submit" className="btn btn-primary" onClick={handleLogout}>Logout</button><br/><br/>
-                                <Link className="btn btn-primary" to="/translations">Translations</Link>
+                                <Link className="btn btn-primary" to="/user-translations">Translations</Link>
                             </>
                         ) : (
                             <>

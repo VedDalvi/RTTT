@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^7.0.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "docx-parser": "^0.2.1",
     "docxtemplater": "^3.47.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -21,6 +23,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
+    "mysql2": "^3.14.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {

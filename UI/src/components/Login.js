@@ -37,6 +37,7 @@ export default function Login() {
         const { token } = response.data;
         localStorage.setItem('token', token); // Store the token in localStorage
         localStorage.setItem('username', response.data.username);
+        localStorage.setItem('userId', response.data.userId);
         console.log("Valid form submitted"); 
         navigate('/');
         window.location.reload();

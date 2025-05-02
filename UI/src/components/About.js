@@ -70,7 +70,7 @@ export default function About({isLoggedIn, setLoggedIn}) {
                       <td>Ved Dalvi</td>
                       <td>201105076</td>
                       <td>veddalvi123@gmail.com</td>
-                      <td>Model training and testing</td>
+                      <td>Testing</td>
                     </tr>
                     <tr>
                       <td>Anish Naik</td>

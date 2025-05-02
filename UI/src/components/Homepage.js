@@ -41,7 +41,7 @@ export default function Homepage({ isLoggedIn, setLoggedIn }) {
     if (!isLoggedIn) {
       navigate('/login');
     } else {
-      navigate('/translations');
+      navigate('/user-translations');
     }
   };
 

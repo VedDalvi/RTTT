@@ -46,8 +46,8 @@ export default function App() {
       element:<Login/>
     },
     {
-      path:'/translations',
-      element:<ProtectedRoute><UserTranslations isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/></ProtectedRoute>
+      path:'/user-translations',
+      element:<ProtectedRoute> <UserTranslations isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/> </ProtectedRoute>
     }
   ])
   return (

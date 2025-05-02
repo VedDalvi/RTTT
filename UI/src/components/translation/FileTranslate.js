@@ -51,11 +51,16 @@ function FileTranslate() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    const token = localStorage.getItem('token');
     formData.append('file', uploadedFile);
+    formData.append('userId', localStorage.getItem('userId'));
     try{
           const response = await fetch('http://localhost:3001/upload/pdf', {
             method: 'POST',
             body: formData,
+            headers: {
+              'Authorization': `Bearer ${token}`, // if you're using JWTs
+            }
       })
       const data = await response.json();
 

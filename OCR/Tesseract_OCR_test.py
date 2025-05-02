@@ -16,6 +16,17 @@ import docx
 import dotenv
 
 dotenv.load_dotenv()
+def split_text(text, max_length=4000):
+    chunks = []
+    while len(text) > max_length:
+        split_at = text.rfind(' ', 0, max_length)
+        if split_at == -1:
+            split_at = max_length
+        chunks.append(text[:split_at])
+        text = text[split_at:].strip()
+    chunks.append(text)
+    return chunks
+
 # Function to extract text from image using OCR
 def extract_text_from_image(image_path):
     # Open the image file
@@ -37,7 +48,9 @@ def extract_text_from_image(image_path):
     engsample= text
 
     print("\n\nTranslating Input Text...")
-    result = translator.translate(engsample)
+    chunks = split_text(engsample)
+    translated_chunks = [translator.translate(chunk) for chunk in chunks]
+    result = ' '.join(translated_chunks)
     document = docx.Document()
     document.add_paragraph(result)
     document.save(os.getenv('savedDocx'))
@@ -78,7 +91,9 @@ def extract_text_from_pdf(pdf_path):
         engsample= pdf_text
 
         print("\n\nTranslating Input Text...")
-        result = translator.translate(engsample)
+        chunks = split_text(engsample)
+        translated_chunks = [translator.translate(chunk) for chunk in chunks]
+        result = ' '.join(translated_chunks)
         document = docx.Document()
         document.add_paragraph(result)
         document.save(os.getenv('savedDocx'))
@@ -101,8 +116,6 @@ def extract_text(input_path):
     else:
         text = "Unsupported file format"
 
-# Path to your input file (image or PDF)
-#input_path = r'C:\\Users\\Rutij\\Desktop\\Project\\RTTT\\OCR\\content\\Introduction to NoSql.pdf'  # Change this to your input file path
 if len(sys.argv) != 2:
     print("Usage: python Tesseract_OCR_test.py")
     sys.exit(1)

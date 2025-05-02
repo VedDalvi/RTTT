@@ -54,11 +54,16 @@ function ImageTranslation() {
 
   const submitForm = async(file) => {
     const formData = new FormData();
+    const token = localStorage.getItem('token');
     formData.append('image', file);
+    formData.append('userId', localStorage.getItem('userId'));
     try{
           const response = await fetch('http://localhost:3001/upload/image', {
             method: 'POST',
             body: formData,
+            headers: {
+              'Authorization': `Bearer ${token}`, // if you're using JWTs
+            }
       })
       const data = await response.json();
 
