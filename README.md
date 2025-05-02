@@ -4,10 +4,10 @@ This project is a website that combines **speech recognition**, **text extractio
 
 ---
 ## 🖥️ System Requirements
-- CPU : Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
-- GPU : NVIDIA GeForce GTX 1650 Ti
-- RAM : 8 GB
-- Designed to work on **Windows 10**.
+- **CPU** : Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+- **GPU** : NVIDIA GeForce GTX 1650 Ti
+- **RAM** : 8 GB
+- **OS** : **Windows 10 or Above**.
 
 ## 🔧 Features
 
