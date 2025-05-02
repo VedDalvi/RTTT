@@ -182,11 +182,11 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
                                     <p style={{ fontSize: '18px' }}>
                                         <strong>Filename:</strong> {file.filename}
                                     </p>
-                                    <button className="imgdlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
-                                    <br />
-                                    <button className="imgdel" onClick={() => handleDeleteTranslation(file.id)}>
-                                        Delete
-                                    </button>
+                                    <div style={{display:'flex'}}>
+                                        <button className="imgdlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
+                                        <br />
+                                        <button className="imgdel" onClick={() => handleDeleteTranslation(file.id)}>Delete</button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
