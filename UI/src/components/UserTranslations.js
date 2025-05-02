@@ -142,8 +142,8 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
                                     <p style={{fontSize:'20px'}}>
                                         <em style={{fontWeight:'1000'}}>Uploaded on:</em> {new Date(translation.created_at).toLocaleDateString()} {new Date(translation.created_at).toLocaleTimeString()}
                                     </p>
-                                    <strong style={{textDecoration:'underline', fontSize:'25px'}}>Input:</strong><br></br> <p style={{fontSize:'18px'}}>{translation.input_text}</p>
-                                    <strong style={{textDecoration:'underline', fontSize:'25px'}}>Translated:</strong><br></br> <p style={{fontSize:'18px'}}>{translation.translated_text}</p>
+                                    <strong style={{textDecoration:'underline', fontSize:'25px'}}>Input:</strong><br></br> <p style={{fontSize:'18px', whiteSpace:'pre-line'}}>{translation.input_text}</p>
+                                    <strong style={{textDecoration:'underline', fontSize:'25px'}}>Translated:</strong><br></br> <p style={{fontSize:'18px', whiteSpace:'pre-line'}}>{translation.translated_text}</p>
                                     <button className="txtdel" onClick={() => handleDeleteTranslation(translation.id)} >Delete</button>
                                 </li>
                             ))}
@@ -182,7 +182,7 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
                                     <p style={{ fontSize: '18px' }}>
                                         <strong>Filename:</strong> {file.filename}
                                     </p>
-                                    <button button className="imgdlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
+                                    <button className="imgdlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
                                     <br />
                                     <button className="imgdel" onClick={() => handleDeleteTranslation(file.id)}>
                                         Delete

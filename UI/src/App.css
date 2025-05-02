@@ -1080,11 +1080,11 @@ p {
     color:white;
     transition: 200ms;
 }
-.cont_tran_file .imgdel:hover {
+.cont_tran_img .imgdel:hover {
     color: #ff0000;
     background-color:#000000;
 }
-.cont_tran_file .imgdlbt {
+.cont_tran_img .imgdlbt {
     margin: auto;
     width: 55%;
     font-size: 30px;
@@ -1092,7 +1092,7 @@ p {
     background: aquamarine;
     transition: 200ms;
 }
-.cont_tran_file .imgdlbt:hover {
+.cont_tran_img .imgdlbt:hover {
     background: #0CA789;
     color: white;
     border-color: white;
