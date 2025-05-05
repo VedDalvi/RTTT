@@ -5,7 +5,7 @@ This project is a website that combines **speech recognition**, **text extractio
 ---
 ## 🖥️ System Requirements
 - **CPU** : Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
-- **GPU** : NVIDIA GeForce GTX 1650 Ti
+- **GPU** : NVIDIA GeForce GTX 1650 Ti 
 - **RAM** : 8 GB
 - **OS** : **Windows 10 or Above**.
 
@@ -18,7 +18,7 @@ This project is a website that combines **speech recognition**, **text extractio
 - Renders translated text on video using **Cairo** for smooth Devanagari script rendering.
 - Saves transcripts (English + translated) as `.txt` and zipped output.
 - Exports final translated video.
-- **Please Note**: tiny, medium and large models can be downloaded. However you'll need sufficient computing power to run the medium and large model. This project was tested on base model which provided good enough accuracy for speech recognition but still had issues recognizing words when there were different accents.
+- ***Please Note***: *tiny, medium and large models can be downloaded. However you'll need sufficient computing power to run the medium and large model. This project was tested on base model which provided good enough accuracy for speech recognition but still had issues recognizing words when there were different accents.*
 
 ### ✅ PDF & Image Translation
 - Extracts text from:
@@ -34,9 +34,9 @@ This project is a website that combines **speech recognition**, **text extractio
 ### 🧠 Backend & Core Processing
 - 🐍 `Python` (Whisper, OCR, translation)
 - 🎙️ `OpenAI Whisper` for speech-to-text
-- 📄 `Tesseract OCR` for image-based text extraction
+- 📄 `PyTesseract` for image-based text extraction
 - 📚 `PyPDF2` for PDF parsing
-- 🌐 `EasyGoogleTranslate` for Google Translate API integration
+- 🌐 `EasyGoogleTranslate` a free to use Google Translate API
 - 🎥 `moviepy` for video editing
 - 🎨 `cairo` for text image rendering
 - `.env` for file paths and configurations.
