@@ -55,8 +55,8 @@ export default function About({isLoggedIn, setLoggedIn}) {
             <div className="about-us">
               <h1>About Us</h1>
               <p>
-                This project was created as a part of completion for <b>4 Years Bachelor's Degree</b> course in <b>Computer Engineering at Goa Engineering College</b>, Farmagudi, Goa.<br/><br/>
-                <h4><b>Project Guide:</b> Prof. Sherica Lavinia Menezes, Assistant Professor, GEC.</h4><br/>
+                This project was created as a part of completion for <b style={{textDecorationLine:"underline"}}>4 Years Bachelor's Degree</b> course in <b style={{textDecorationLine:"underline"}}>Computer Engineering at Goa Engineering College</b>, Farmagudi, Goa.<br/><br/>
+                <h4><b style={{textDecorationLine:"underline"}}>Project Guide:</b> Prof. Sherica Lavinia Menezes, Assistant Professor, GEC.</h4><br/>
                 <div className="members">
                   <h3>Team Members</h3>
                   <table>
@@ -66,29 +66,33 @@ export default function About({isLoggedIn, setLoggedIn}) {
                       <th>email</th>
                       <th>Worked On</th>
                     </tr>
+
                     <tr>
                       <td>Ved Dalvi</td>
                       <td>201105076</td>
                       <td>veddalvi123@gmail.com</td>
                       <td>Testing</td>
                     </tr>
+
                     <tr>
                       <td>Anish Naik</td>
                       <td>201105007</td>
                       <td>anishhollowman17@gmail.com</td>
                       <td>OCR python script and Backend handling</td>
                     </tr>
+
                     <tr>
                       <td>Yatish Kunkolkar</td>
                       <td>201105081</td>
                       <td>yatishkunkolkar@gmail.com</td>
                       <td>Video captioning python script</td>
                     </tr>
+                    
                     <tr>
                       <td>Rutij Navelkar</td>
                       <td>201105047</td>
                       <td>navellarrutij@gmail.com</td>
-                      <td>UI and Node JS(file upload to scripts for processing)</td>
+                      <td>UI, Node JS and Database(file upload to scripts for processing, translations stored on DB)</td>
                     </tr>
                   </table>
                 </div>

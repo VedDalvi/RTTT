@@ -1098,6 +1098,7 @@ p {
     border-color: white;
 }
 /*End of UserTrasnlation*/
+
 /*About Section*/
     .about {
         background: linear-gradient(-45deg, #ee7752, #23a6d5, #23d5ab);
@@ -1279,7 +1280,7 @@ p {
         position: relative;
         bottom: 35px;
         border: solid;
-        height: 1000px;
+        height: auto;
         border-radius: 17px 17px 0px 0px;
     }
     .about-us h1 {
@@ -1304,7 +1305,7 @@ p {
         width: 68%;
         border: black dashed;
         border-radius: 10px;
-        height:220px;
+        height:auto;
         background:#ffffff;
         text-align: center;
     }
@@ -1324,17 +1325,20 @@ p {
         font-size: 30px;
         border-collapse: collapse;
         width: 100%;
-      }
+    }
       
     .members th, td {
         text-align: center;
         padding: 8px;
-      }
+    }
     .members th {
         background-color: #04AA6D;
         color: white;
-      }
-    .members tr:hover {background-color: coral;}
+    }
+    .members tr:hover {
+        background-color: coral;
+    }
+
     @keyframes gradient {
         0% {
             background-position: 0% 50%;
