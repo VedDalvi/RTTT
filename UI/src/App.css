@@ -1,3 +1,4 @@
+/*Homepage Styles*/
 .container-fluid {
     z-index: 1;
     position: relative;
@@ -278,6 +279,7 @@
         background-color: #20cc98;
     }
 }
+/*End of Homepage Styles*/
 
 /*Main Body Style*/
 body {
@@ -373,7 +375,7 @@ padding: 20px;
 }
 /*End of Navbar Button Style*/
 
-/*Cards Style*/
+/*Transate page and Cards Style*/
 .translate_bg {
     background: linear-gradient(#ff98d4,#0383d8);
     padding: 5px;
@@ -414,7 +416,7 @@ p {
     text-shadow:2px 2px #ffffff;
     border-radius: 25px;
 }
-/*End ofCards Style*/
+/*End of Transate page and Cards Style*/
 
 /*Text Translate Styles*/
 .space-txttr{
