@@ -8,6 +8,7 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
     const [username, setUsername] = useState("");
     const [translations, setTranslations] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [errloading, setErrorLoading] = useState(null);
     const textRef = useRef(null);
     const fileRef = useRef(null);
     const imgRef = useRef(null);
@@ -95,10 +96,12 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
                 .then((data) => {
                     setTranslations(data);
                     setLoading(false);
+                    setErrorLoading(false);
                 })
                 .catch((err) => {
                     console.error('Error fetching translations:', err);
                     setLoading(false);
+                    setErrorLoading(true);
                 });
         } else {
             setLoading(false);
@@ -129,69 +132,76 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
             <div className="usertranslation">
                 <h2>{isLoggedIn && username ? username : "User"}, here's what you have translated before.</h2>
                 <div className="cont_tran">
-                    {loading ? (
-                        <h4>Loading your translations...</h4>
-                    ) : translations.length === 0 ? (
-                        <h4>You have no translations yet &#x1F61E;. <br></br>Please Translate some Text, Files or Images then comeback here.</h4>
-                    ) : (
+                    { errloading ? (
                     <>
-                        <h4 ref={textRef}> Text Translations</h4>
-                        <ul className='cont_tran_text'>
-                            {translations.filter(t => t.type === 'text').map((translation) => (
-                                <li key={translation.id} style={{ marginBottom: '1.5rem' }}>
-                                    <p style={{fontSize:'20px'}}>
-                                        <em style={{fontWeight:'1000'}}>Uploaded on:</em> {new Date(translation.created_at).toLocaleDateString()} {new Date(translation.created_at).toLocaleTimeString()}
-                                    </p>
-                                    <strong style={{textDecoration:'underline', fontSize:'25px'}}>Input:</strong><br></br> <p style={{fontSize:'18px', whiteSpace:'pre-line'}}>{translation.input_text}</p>
-                                    <strong style={{textDecoration:'underline', fontSize:'25px'}}>Translated:</strong><br></br> <p style={{fontSize:'18px', whiteSpace:'pre-line'}}>{translation.translated_text}</p>
-                                    <button className="txtdel" onClick={() => handleDeleteTranslation(translation.id)} >Delete</button>
-                                </li>
-                            ))}
-                        </ul>
+                        <h4>Database Error &#x1F61E;. Couldn't Connect to database.</h4>
+                    </>) : (
+                    <>
+                        {loading ? (
+                            <h4>Loading your translations...</h4>
+                        ) : translations.length === 0 ? (
+                            <h4>You have no translations yet &#x1F61E;. <br></br>Please Translate some Text, Files or Images then comeback here.</h4>
+                        ) : (
+                        <>
+                            <h4 ref={textRef}> Text Translations</h4>
+                            <ul className='cont_tran_text'>
+                                {translations.filter(t => t.type === 'text').map((translation) => (
+                                    <li key={translation.id} style={{ marginBottom: '1.5rem' }}>
+                                        <p style={{fontSize:'20px'}}>
+                                            <em style={{fontWeight:'1000'}}>Uploaded on:</em> {new Date(translation.created_at).toLocaleDateString()} {new Date(translation.created_at).toLocaleTimeString()}
+                                        </p>
+                                        <strong style={{textDecoration:'underline', fontSize:'25px'}}>Input:</strong><br></br> <p style={{fontSize:'18px', whiteSpace:'pre-line'}}>{translation.input_text}</p>
+                                        <strong style={{textDecoration:'underline', fontSize:'25px'}}>Translated:</strong><br></br> <p style={{fontSize:'18px', whiteSpace:'pre-line'}}>{translation.translated_text}</p>
+                                        <button className="txtdel" onClick={() => handleDeleteTranslation(translation.id)} >Delete</button>
+                                    </li>
+                                ))}
+                            </ul>
 
-                        <h4 ref={fileRef}> File Translations</h4>
-                        <ul className='cont_tran_file'>
-                            {translations.filter((t) => t.type === 'file' || t.type === 'pdf').map((file) => (
-                                <li key={file.id} style={{ marginBottom: '1.5rem' }}>
-                                    <p style={{ fontSize: '20px' }}>
-                                        <em style={{ fontWeight: '1000' }}>Uploaded on:</em>{' '}
-                                        {new Date(file.created_at).toLocaleDateString()}{' '}
-                                        {new Date(file.created_at).toLocaleTimeString()}
-                                    </p>
-                                    <p style={{ fontSize: '18px' }}>
-                                        <strong>Filename:</strong> {file.filename}
-                                    </p>
-                                    <div style={{display:'flex'}}>
-                                        <button className="filedlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
-                                        <br />
-                                        <button className="filedel" onClick={() => handleDeleteTranslation(file.id)}>Delete</button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                            <h4 ref={fileRef}> File Translations</h4>
+                            <ul className='cont_tran_file'>
+                                {translations.filter((t) => t.type === 'file' || t.type === 'pdf').map((file) => (
+                                    <li key={file.id} style={{ marginBottom: '1.5rem' }}>
+                                        <p style={{ fontSize: '20px' }}>
+                                            <em style={{ fontWeight: '1000' }}>Uploaded on:</em>{' '}
+                                            {new Date(file.created_at).toLocaleDateString()}{' '}
+                                            {new Date(file.created_at).toLocaleTimeString()}
+                                        </p>
+                                        <p style={{ fontSize: '18px' }}>
+                                            <strong>Filename:</strong> {file.filename}
+                                        </p>
+                                        <div style={{display:'flex'}}>
+                                            <button className="filedlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
+                                            <br />
+                                            <button className="filedel" onClick={() => handleDeleteTranslation(file.id)}>Delete</button>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
 
-                        <h4 ref={imgRef}> Image Translations</h4>
-                        <ul className='cont_tran_img'>
-                            {translations.filter((t) => t.type === 'image').map((file) => (
-                                <li key={file.id} style={{ marginBottom: '1.5rem' }}>
-                                    <p style={{ fontSize: '20px' }}>
-                                        <em style={{ fontWeight: '1000' }}>Uploaded on:</em>{' '}
-                                        {new Date(file.created_at).toLocaleDateString()}{' '}
-                                        {new Date(file.created_at).toLocaleTimeString()}
-                                    </p>
-                                    <p style={{ fontSize: '18px' }}>
-                                        <strong>Filename:</strong> {file.filename}
-                                    </p>
-                                    <div style={{display:'flex'}}>
-                                        <button className="imgdlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
-                                        <br />
-                                        <button className="imgdel" onClick={() => handleDeleteTranslation(file.id)}>Delete</button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                            <h4 ref={imgRef}> Image Translations</h4>
+                            <ul className='cont_tran_img'>
+                                {translations.filter((t) => t.type === 'image').map((file) => (
+                                    <li key={file.id} style={{ marginBottom: '1.5rem' }}>
+                                        <p style={{ fontSize: '20px' }}>
+                                            <em style={{ fontWeight: '1000' }}>Uploaded on:</em>{' '}
+                                            {new Date(file.created_at).toLocaleDateString()}{' '}
+                                            {new Date(file.created_at).toLocaleTimeString()}
+                                        </p>
+                                        <p style={{ fontSize: '18px' }}>
+                                            <strong>Filename:</strong> {file.filename}
+                                        </p>
+                                        <div style={{display:'flex'}}>
+                                            <button className="imgdlbt" onClick={() => downloadFile(file.id, file.filename)}>Download File</button>
+                                            <br />
+                                            <button className="imgdel" onClick={() => handleDeleteTranslation(file.id)}>Delete</button>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                        )}
                     </>
-                    )}
+                )}
                 </div>
             </div>
         </>

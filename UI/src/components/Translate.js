@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState} from 'react';
 import Navbar from './navbar/Navbar';
 import Cards from './cards/Cards';
 import TextTranslation from './translation/TextTranslate';
@@ -8,21 +8,9 @@ import VidTranslate from './translation/VidCaption'
 
 export default function Translate({isLoggedIn, setLoggedIn}) {
   const [selectedOption, setSelectedOption] = useState(null);
-  const componentRef = useRef(null);
   const handleOptionSelect = (option) => {
-    if (componentRef.current && !componentRef.current.contains(option.target)) {
-      setSelectedOption(false);
-    } else {
       setSelectedOption(option);
-    }
   };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleOptionSelect);
-    return () => {
-      document.removeEventListener('mousedown', handleOptionSelect);
-    };
-  }, []);
   return (
    <>
     <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
