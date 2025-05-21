@@ -1,10 +1,3 @@
-# !pip install PyPDF2
-# !pip install pdf2image
-# !apt update
-# !apt install tesseract-ocr
-# !pip install pytesseract
-# !pip install easygoogletranslate
-
 import sys
 from easygoogletranslate import EasyGoogleTranslate
 import os
@@ -67,11 +60,7 @@ def extract_text_from_pdf(pdf_path):
 
         # Initialize list to store extracted text
         extracted_text = []
-        from PyPDF2 import PdfReader
 
-        # reader = PdfReader("example.pdf")
-        # number_of_pages = len(reader.pages)
-        # text = reader.pages[0].extract_text()
         # Iterate through each page of the PDF
         for page_num in range(len(pdf_reader.pages)):
             # Get the text from the current page
@@ -87,9 +76,9 @@ def extract_text_from_pdf(pdf_path):
         timeout=30
         )
 
-        print("Enter Sample Text in English: ")
         engsample= pdf_text
-
+        print(engsample)
+        
         print("\n\nTranslating Input Text...")
         chunks = split_text(engsample)
         translated_chunks = [translator.translate(chunk) for chunk in chunks]
@@ -115,6 +104,7 @@ def extract_text(input_path):
         text = extract_text_from_pdf(input_path)
     else:
         text = "Unsupported file format"
+    return text
 
 if len(sys.argv) != 2:
     print("Usage: python Tesseract_OCR_test.py")

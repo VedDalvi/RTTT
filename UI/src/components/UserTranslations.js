@@ -134,7 +134,7 @@ export default function UserTranslations({ isLoggedIn, setLoggedIn }) {
                 <div className="cont_tran">
                     { errloading ? (
                     <>
-                        <h4>Database Error &#x1F61E;. Couldn't Connect to database.</h4>
+                        <h4>Database Error &#x1F61E;. Couldn't Connect to database.<br></br>&#40;Try Relogging in, sometimes if your token expires this error is displayed&#41;</h4>
                     </>) : (
                     <>
                         {loading ? (

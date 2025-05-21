@@ -71,14 +71,14 @@ export default function About({isLoggedIn, setLoggedIn}) {
                       <td>Ved Dalvi</td>
                       <td>201105076</td>
                       <td>veddalvi123@gmail.com</td>
-                      <td>Testing</td>
+                      <td>API, Testing</td>
                     </tr>
 
                     <tr>
                       <td>Anish Naik</td>
                       <td>201105007</td>
                       <td>anishhollowman17@gmail.com</td>
-                      <td>OCR python script and Backend handling</td>
+                      <td>OCR python script and Backend handling framework</td>
                     </tr>
 
                     <tr>
@@ -92,7 +92,7 @@ export default function About({isLoggedIn, setLoggedIn}) {
                       <td>Rutij Navelkar</td>
                       <td>201105047</td>
                       <td>navellarrutij@gmail.com</td>
-                      <td>UI, Node JS and Database(file upload to scripts for processing, translations stored on DB)</td>
+                      <td style={{fontSize:"20px"}}>UI, Captioning Improvements, Node JS and Database(file upload to scripts for processing, translations stored on DB)</td>
                     </tr>
                   </table>
                 </div>
