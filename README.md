@@ -24,7 +24,7 @@ This project is a website that combines **speech recognition**, **text extractio
 - Extracts text from:
   - PDFs via `PyPDF2`
   - Images via `Tesseract OCR`
-- Translates long-form text (auto-chunks > 5000 characters to avoid API limits).
+- Translates long text (chunks > 5000 characters to avoid API limits).
 - Saves translated output as a `translated_output.docx` document.
 
   ---
@@ -38,8 +38,7 @@ This project is a website that combines **speech recognition**, **text extractio
 - 📚 `PyPDF2` for PDF parsing
 - 🌐 `EasyGoogleTranslate` a free to use Google Translate API
 - 🎥 `moviepy` for video editing
-- 🎨 `ImageMagick` for text image rendering
-- `.env` for file paths and configurations.
+- 🎨 `ImageMagick` for Konkani caption rendering
 
 ### 🌐 Web Stack
 - ⚛️ **React.js** (Frontend)
